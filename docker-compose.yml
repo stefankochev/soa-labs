@@ -1,0 +1,38 @@
+version: '3.5'
+services:
+    postgres-db:
+        image: postgres:11 # prebuilt image from https://hub.docker.com/_/postgres
+        restart: always
+        environment: # environment variables
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: soaapidb
+        user: postgres # the OS user we use to run the commands (for the healthcheck probes)
+        volumes:
+            - db-data:/var/lib/postgresql/data
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready" ]
+            start_period: 5s
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+    items-api:
+        build: . # instead of specifying an image, we build the image using the Dockerfile
+        restart: always
+        # environment variables
+        environment:
+            DB_HOST: postgres-db
+            DB_PORT: 5432
+            DB_USER: postgres
+            DB_PASSWORD: postgres
+            DB_NAME: soaapidb
+        ports:
+            - 8080:8000
+        depends_on:
+            postgres-db:
+                condition: service_healthy
+
+volumes:
+    db-data:
+        driver: local
