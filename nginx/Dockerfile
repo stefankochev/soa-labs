@@ -1,9 +1,5 @@
 FROM nginx:1.17.6
 
-RUN set -x \
-    && apt-get update \
-    && apt-get install --no-install-recommends --no-install-suggests -y apache2-utils jq
-
 # Remove default Nginx config
 RUN rm /etc/nginx/nginx.conf
 
