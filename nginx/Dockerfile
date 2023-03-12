@@ -15,6 +15,5 @@ RUN touch /etc/nginx/sites-enabled/api_nginx.conf
 
 # Copy the custom setup and entrypoint scripts
 COPY serve.sh /serve.sh
-COPY env_setup.sh /env_setup.sh
 
-ENTRYPOINT ["/serve.sh"]
+ENTRYPOINT ["/bin/bash", "/serve.sh"]
