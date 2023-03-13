@@ -38,7 +38,7 @@ For local API development, we can still run the database in a container:
 docker-compose up -d postgres-db
 ```
 
-The database is now available on localhost:5432. This is configured in the src/.env file.
+The database is now available on localhost:5432. This is configured in the .env file.
 
 We need a virtual environment. We can create one with the command:
 ```
@@ -62,21 +62,9 @@ Install the requirements:
 pip install -r requirements.txt
 ```
 
-Setup PYTHON PATH:
-
-Linux
-```
-export PYTHONPATH=.
-```
-
-Windows
-```
-set PYTHONPATH=.
-```
-
 Run the API:
 ```
-python src/devserver.py
+python devserver.py
 ```
 
 #### Tips and Tricks
