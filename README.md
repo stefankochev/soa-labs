@@ -86,3 +86,5 @@ To fix the problem, before git clone or git pull, run the following cmd:
 ```
 git config --global core.autocrlf input
 ```
+
+[ref.](https://github.com/docker/compose/issues/2301)
