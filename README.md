@@ -45,12 +45,14 @@ We need a virtual environment. We can create one with the command:
 python -m venv venv
 ```
 
-Activate the env with:
+Activate the virtual environment with:
+
+Linux
 ```
 source venv/bin/activate
 ```
 
-for Windows:
+Windows
 ```
 venv\Scripts\activate
 ```
@@ -61,11 +63,13 @@ pip install -r requirements.txt
 ```
 
 Setup PYTHON PATH:
+
+Linux
 ```
 export PYTHONPATH=.
 ```
 
-for Windows:
+Windows
 ```
 set PYTHONPATH=.
 ```
