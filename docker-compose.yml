@@ -27,8 +27,6 @@ services:
             DB_USER: postgres
             DB_PASSWORD: postgres
             DB_NAME: soaapidb
-        ports:
-            - 8080:8000
         depends_on:
             postgres-db:
                 condition: service_healthy
@@ -38,6 +36,28 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
+        deploy:
+            mode: replicated
+            replicas: 5
+
+    nginx-proxy:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        # name for the image built with ./nginx/Dockerfile
+        image: nginx-server-image
+        # custom container name for the proxy container
+        container_name: items-api-nginx-proxy
+        ports:
+            - 5002:5000
+        environment:
+            NGINX_SERVER_PORT: 5000
+            API_HOST: items-api
+            API_PORT: 8000
+        depends_on:
+            items-api:
+                condition: service_healthy
+
 
 volumes:
     db-data:

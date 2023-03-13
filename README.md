@@ -30,3 +30,17 @@ Or build and run with a single command:
 ```
 docker-compose up --build
 ```
+
+#### Tips and Tricks
+
+Windows users may encounter some problems because of the following difference:
+
+- Windows ends lines in a carriage return and a linefeed \r\n,
+- While Linux and macOS only use a linefeed \n.
+
+To fix the problem, before git clone or git pull, run the following cmd:
+```
+git config --global core.autocrlf input
+```
+
+[ref.](https://github.com/docker/compose/issues/2301)
