@@ -31,6 +31,54 @@ Or build and run with a single command:
 docker-compose up --build
 ```
 
+#### Local (no-container) development
+
+For local API development, we can still run the database in a container:
+```
+docker-compose up -d postgres-db
+```
+
+The database is now available on localhost:5432. This is configured in the src/.env file.
+
+We need a virtual environment. We can create one with the command:
+```
+python -m venv venv
+```
+
+Activate the virtual environment with:
+
+Linux
+```
+source venv/bin/activate
+```
+
+Windows
+```
+venv\Scripts\activate
+```
+
+Install the requirements:
+```
+pip install -r requirements.txt
+```
+
+Setup PYTHON PATH:
+
+Linux
+```
+export PYTHONPATH=.
+```
+
+Windows
+```
+set PYTHONPATH=.
+```
+
+Run the API:
+```
+python src/devserver.py
+```
+
 #### Tips and Tricks
 
 Windows users may encounter some problems because of the following difference:
