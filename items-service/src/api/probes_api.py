@@ -9,4 +9,3 @@ router = APIRouter(tags=["probes"])
 def healthcheck_probe():
     ip_address = socket.gethostbyname(socket.gethostname())
     return {"status": f"ok from {ip_address}"}
-

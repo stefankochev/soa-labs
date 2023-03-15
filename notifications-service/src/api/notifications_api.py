@@ -11,7 +11,9 @@ router = APIRouter(tags=["notifications"])
 
 
 @router.post("/notifications", response_model=schemas.Notification)
-def create_notification(item: schemas.NotificationCreate, db: Session = Depends(get_db)):
+def create_notification(
+    item: schemas.NotificationCreate, db: Session = Depends(get_db)
+):
     return crud.create_notification(db=db, item=item)
 
 
