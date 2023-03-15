@@ -40,6 +40,11 @@ docker-compose up -d postgres-db
 
 The database is now available on localhost:5432. This is configured in the .env file.
 
+Let's run the items-service locally:
+```
+cd items-service
+```
+
 We need a virtual environment. We can create one with the command:
 ```
 python -m venv venv
