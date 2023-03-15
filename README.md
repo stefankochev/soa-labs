@@ -85,3 +85,7 @@ git config --global core.autocrlf input
 ```
 
 [ref.](https://github.com/docker/compose/issues/2301)
+
+curl -X 'GET' \
+  'http://0.0.0.0:5002/items/healthcheck' \
+  -H 'accept: application/json'
