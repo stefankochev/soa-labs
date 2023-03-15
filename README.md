@@ -35,6 +35,12 @@ You can now access the two services:
 - Items Service http://localhost:5002/items/docs
 - Notifications Service http://localhost:5002/notifications/docs
 
+or
+
+- Items Service http://0.0.0.0:5002/items/docs
+- Notifications Service http://0.0.0.0:5002/notifications/docs
+
+
 #### Local (no-container) development
 
 For local API development, we can still run the database in a container:
