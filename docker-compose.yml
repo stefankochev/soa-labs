@@ -109,6 +109,18 @@ services:
             notifications-api:
                 condition: service_healthy
 
+    cron-service:
+        build:
+            context: ./cron-service
+            dockerfile: Dockerfile
+        environment:
+            NOTIFICATIONS_SERVICE_URL: "http://notifications-api:8000"
+        depends_on:
+            items-api:
+                condition: service_healthy
+            notifications-api:
+                condition: service_healthy
+
 volumes:
     db-items-data:
         driver: local

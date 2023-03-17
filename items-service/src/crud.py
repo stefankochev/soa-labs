@@ -23,7 +23,7 @@ def create_item(db: Session, item: ItemCreate):
         ]
         notifications_service_request(
             "POST",
-            url=f"{NOTIFICATIONS_SERVICE_URL}/internal/notifications",
+            url=f"{NOTIFICATIONS_SERVICE_URL}/internal/notifications/send",
             json=notifications,
         )
     except Exception as ex:
