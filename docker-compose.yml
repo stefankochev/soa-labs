@@ -30,6 +30,7 @@ services:
             DB_PASSWORD: postgres
             DB_NAME: soaapidb
             API_ROOT_PATH: "/items"
+            NOTIFICATIONS_SERVICE_URL: "http://notifications-api:8000"
         depends_on:
             postgres-db-items:
                 condition: service_healthy

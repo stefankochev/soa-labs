@@ -7,3 +7,6 @@ DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_NAME = os.environ.get("DB_NAME")
 
 API_ROOT_PATH = os.environ.get("API_ROOT_PATH", "")
+
+# inter-service communication config
+NOTIFICATIONS_SERVICE_URL = os.environ.get("NOTIFICATIONS_SERVICE_URL")
