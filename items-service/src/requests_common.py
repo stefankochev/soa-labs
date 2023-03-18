@@ -17,6 +17,9 @@ def request_with_retries(method: str, url: str, **kwargs):
     return response
 
 
+# NOTE:
+# Every instance of the service has an independent state of the circuit breaker;
+# We can use a shared state storage for all the instances (e.g. Redis)
 notifications_service_circuit_breaker = CircuitBreaker(fail_max=5, reset_timeout=20)
 
 
