@@ -2,6 +2,7 @@
 
 SOA tech stack crash course. This project aims to help SOA course students get
 familiar with the tools and the technology we'll be using during the lab exercises.
+It is also a showcase project for the fundamentals of microservices architecture.
 
 #### What you'll need
 
