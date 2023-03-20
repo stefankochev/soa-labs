@@ -8,6 +8,8 @@ services:
             POSTGRES_PASSWORD: postgres
             POSTGRES_DB: soaapidb
         user: postgres # the OS user we use to run the commands (for the healthcheck probes)
+        ports:
+            - 5432:5432
         volumes:
             - db-items-data:/var/lib/postgresql/data
         healthcheck:
@@ -52,6 +54,8 @@ services:
             POSTGRES_PASSWORD: postgres
             POSTGRES_DB: soaapidb
         user: postgres # the OS user we use to run the commands (for the healthcheck probes)
+        ports:
+            - 5433:5432
         volumes:
             - db-notifications-data:/var/lib/postgresql/data
         healthcheck:
