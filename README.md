@@ -45,7 +45,7 @@ or
 
 For local API development, we can still run the database in a container:
 ```
-docker-compose up -d postgres-db
+docker-compose up -d postgres-db-items
 ```
 
 The database is now available on localhost:5432. This is configured in the .env file.
