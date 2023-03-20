@@ -31,6 +31,16 @@ Or build and run with a single command:
 docker-compose up --build
 ```
 
+You can now access the two services:
+- Items Service http://localhost:5002/items/docs
+- Notifications Service http://localhost:5002/notifications/docs
+
+or
+
+- Items Service http://0.0.0.0:5002/items/docs
+- Notifications Service http://0.0.0.0:5002/notifications/docs
+
+
 #### Local (no-container) development
 
 For local API development, we can still run the database in a container:
@@ -39,6 +49,11 @@ docker-compose up -d postgres-db
 ```
 
 The database is now available on localhost:5432. This is configured in the .env file.
+
+Let's run the items-service locally:
+```
+cd items-service
+```
 
 We need a virtual environment. We can create one with the command:
 ```
@@ -80,3 +95,7 @@ git config --global core.autocrlf input
 ```
 
 [ref.](https://github.com/docker/compose/issues/2301)
+
+curl -X 'GET' \
+  'http://0.0.0.0:5002/items/healthcheck' \
+  -H 'accept: application/json'
