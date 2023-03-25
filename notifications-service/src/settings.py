@@ -7,3 +7,8 @@ DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_NAME = os.environ.get("DB_NAME")
 
 API_ROOT_PATH = os.environ.get("API_ROOT_PATH", "")
+
+KAFKA_BROKER_HOST = os.environ.get("KAFKA_BROKER_HOST")
+KAFKA_BROKER_PORT = os.environ.get("KAFKA_BROKER_PORT")
+ITEMS_TOPIC = os.environ.get("ITEMS_TOPIC")
+KAFKA_CONSUMER_GROUP = "notification_instances"

@@ -11,8 +11,8 @@ router = APIRouter(tags=["items"])
 
 
 @router.post("/items", response_model=schemas.Item)
-def create_item(item: schemas.ItemCreate, db: Session = Depends(get_db)):
-    return crud.create_item(db=db, item=item)
+async def create_item(item: schemas.ItemCreate, db: Session = Depends(get_db)):
+    return await crud.create_item(db=db, item=item)
 
 
 @router.get("/items", response_model=list[schemas.Item])
