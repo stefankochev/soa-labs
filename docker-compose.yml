@@ -23,6 +23,7 @@ services:
             KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
             KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
             KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+            KAFKA_NUM_PARTITIONS: 2 # important for load-balancing
         healthcheck:
             test: nc -z localhost 9092 || exit -1
             start_period: 20s
@@ -65,7 +66,7 @@ services:
             NOTIFICATIONS_SERVICE_URL: "http://notifications-api:8000"
             KAFKA_BROKER_HOST: broker
             KAFKA_BROKER_PORT: 29092
-            ITEMS_TOPIC: "new_items_topic"
+            ITEMS_TOPIC: "new-items-topic"
         depends_on:
             postgres-db-items:
                 condition: service_healthy
@@ -115,7 +116,7 @@ services:
             API_ROOT_PATH: "/notifications"
             KAFKA_BROKER_HOST: broker
             KAFKA_BROKER_PORT: 29092
-            ITEMS_TOPIC: "new_items_topic"
+            ITEMS_TOPIC: "new-items-topic"
         depends_on:
             postgres-db-notifications:
                 condition: service_healthy
