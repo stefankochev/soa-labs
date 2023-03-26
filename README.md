@@ -1,8 +1,8 @@
-## Service Oriented Architecture - Tools & Tech Stack Course
+## Service Oriented Architecture - Microservices - Fundamentals, Tools & Tech Stack Course
 
 SOA tech stack crash course. This project aims to help SOA course students get
 familiar with the tools and the technology we'll be using during the lab exercises.
-It is also a showcase project for the fundamentals of microservices architecture.
+It is a showcase project for the fundamentals of microservices architecture.
 
 #### What you'll need
 
@@ -49,7 +49,13 @@ For local API development, we can still run the database in a container:
 docker-compose up -d postgres-db-items
 ```
 
-The database is now available on localhost:5432. This is configured in the .env file.
+for the items service, or:
+```
+docker-compose up -d postgres-db-notifications
+```
+for the notifications service.
+
+The database is now available on localhost:5432. This is configured in each .env file.
 
 Let's run the items-service locally:
 ```
@@ -61,14 +67,14 @@ We need a virtual environment. We can create one with the command:
 python -m venv venv
 ```
 
-Activate the virtual environment with:
+Activate the virtual environment with the following commands:
 
-Linux
+For Linux:
 ```
 source venv/bin/activate
 ```
 
-Windows
+For Windows:
 ```
 venv\Scripts\activate
 ```
@@ -78,7 +84,7 @@ Install the requirements:
 pip install -r requirements.txt
 ```
 
-Run the API:
+Run the service:
 ```
 python devserver.py
 ```
