@@ -21,7 +21,7 @@ def get_consumer() -> AIOKafkaConsumer:
     if not kafka_consumer:
         kafka_consumer = AIOKafkaConsumer(
             *TOPICS,
-            bootstrap_servers=f"{KAFKA_BROKER_HOST}:{str(KAFKA_BROKER_PORT)}",
+            bootstrap_servers=f"{KAFKA_BROKER_HOST}:{KAFKA_BROKER_PORT}",
             group_id=KAFKA_CONSUMER_GROUP,
         )
     return kafka_consumer

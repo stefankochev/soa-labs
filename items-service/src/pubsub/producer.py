@@ -13,6 +13,6 @@ def get_producer() -> AIOKafkaProducer:
         loop = asyncio.get_event_loop()
         kafka_producer = AIOKafkaProducer(
             loop=loop,
-            bootstrap_servers=f"{KAFKA_BROKER_HOST}:{str(KAFKA_BROKER_PORT)}",
+            bootstrap_servers=f"{KAFKA_BROKER_HOST}:{KAFKA_BROKER_PORT}",
         )
     return kafka_producer
