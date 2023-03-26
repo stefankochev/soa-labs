@@ -57,6 +57,11 @@ for the notifications service.
 
 The database is now available on localhost:5432. This is configured in each .env file.
 
+We need a Kafka broker running in a container:
+```
+docker-compose up -d broker
+```
+
 Let's run the items-service locally:
 ```
 cd items-service
@@ -66,6 +71,16 @@ We need a virtual environment. We can create one with the command:
 ```
 python -m venv venv
 ```
+
+You can now access the service:
+- Items Service http://localhost:5002/docs
+- Notifications Service http://localhost:5004/docs
+
+or
+
+- Items Service http://0.0.0.0:5002/docs
+- Notifications Service http://0.0.0.0:5004/docs
+
 
 Activate the virtual environment with the following commands:
 
@@ -88,6 +103,7 @@ Run the service:
 ```
 python devserver.py
 ```
+
 
 #### Tips and Tricks
 
