@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT ["uvicorn", "src.main:app", "--host", "0.0.0.0"]
+ENTRYPOINT ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--log-config", "logging_config.yaml"]

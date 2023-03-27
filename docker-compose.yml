@@ -1,5 +1,36 @@
 version: '3.5'
 services:
+
+    zookeeper:
+        image: confluentinc/cp-zookeeper:7.3.2
+        container_name: zookeeper
+        environment:
+            ZOOKEEPER_CLIENT_PORT: 2181
+            ZOOKEEPER_TICK_TIME: 2000
+
+    broker:
+        image: confluentinc/cp-kafka:7.3.2
+        container_name: broker
+        ports:
+            - 9092:9092
+        depends_on:
+            - zookeeper
+        environment:
+            KAFKA_BROKER_ID: 1
+            KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+            KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+            KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
+            KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+            KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+            KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+            KAFKA_NUM_PARTITIONS: 2 # important for load-balancing
+        healthcheck:
+            test: nc -z localhost 9092 || exit -1
+            start_period: 20s
+            interval: 5s
+            timeout: 10s
+            retries: 10
+
     postgres-db-items:
         image: postgres:11 # prebuilt image from https://hub.docker.com/_/postgres
         restart: always
@@ -33,8 +64,13 @@ services:
             DB_NAME: soaapidb
             API_ROOT_PATH: "/items"
             NOTIFICATIONS_SERVICE_URL: "http://notifications-api:8000"
+            KAFKA_BROKER_HOST: broker
+            KAFKA_BROKER_PORT: 29092
+            ITEMS_TOPIC: "new-items-topic"
         depends_on:
             postgres-db-items:
+                condition: service_healthy
+            broker:
                 condition: service_healthy
         healthcheck:
             test: "curl --fail http://localhost:8000/healthcheck || exit 1"
@@ -78,8 +114,13 @@ services:
             DB_PASSWORD: postgres
             DB_NAME: soaapidb
             API_ROOT_PATH: "/notifications"
+            KAFKA_BROKER_HOST: broker
+            KAFKA_BROKER_PORT: 29092
+            ITEMS_TOPIC: "new-items-topic"
         depends_on:
             postgres-db-notifications:
+                condition: service_healthy
+            broker:
                 condition: service_healthy
         healthcheck:
             test: "curl --fail http://localhost:8000/healthcheck || exit 1"
